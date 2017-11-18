@@ -24,6 +24,14 @@ mongoose.connect(
   }
 );
 
+/** TO DO move DB stuff out 11:25 time in video  */
+/** DB */
+const db = require("./models")
+console.log(db.Article)
+
+/** END DB */
+
+
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function(req, res) {
