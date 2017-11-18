@@ -28,8 +28,36 @@ mongoose.connect(
 /** DB */
 const db = require("./models")
 console.log(db.Article)
+const { Article } = db
+
+// Article.create ({
+//   title: "Manual insert",
+//   url: "http://example.org/insert"
+// }).then(x => console.log(x))
+// .catch(x => console.error(x))
 
 /** END DB */
+
+/** Routes */
+
+app.post("/api/saved", (req, res) => {
+  //get the posted object
+var article = req.body
+// console.log(article)
+  //call Article.create
+   // then return some json (success|error)
+  Article.create(article)
+  .then(() => {
+    res.json(article)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+
+ 
+})
+
+/** End of Routes */
 
 
 // Send every request to the React app
