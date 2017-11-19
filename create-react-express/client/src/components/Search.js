@@ -15,10 +15,11 @@ import Results from "./Search/Results"
 
 class Search extends Component { 
     state = {
-        articles: [],
+       
         queryTerm: "",
         startYear: "",
-        endYear: ""
+        endYear: "",
+        results: {}
     };
 
 
@@ -31,11 +32,11 @@ componentDidUpdate = (prevProps, prevState) => {
         API.runQuery(this.state.queryTerm,
         this.state.startYear, this.state.endYear)
 
-        .then(data => {
+        .then((data) => {
             if (data != this.state.results){
-                this.setState({results:data})
+                this.setState({results: data})
             }
-        }).then(this)
+        })
     }
 }
 
@@ -52,6 +53,10 @@ setQuery = (newQuery, newStart, newEnd) => {
 render() {
 return (
     <Container fluid>
+          <Jumbotron>
+                <h1>New York Times Article Scraper</h1>
+                <h3>Search for articles of interest and save them!</h3>
+            </Jumbotron>
    
         <Query updateSearch={this.setQuery} />
         <Results results={this.state.results} />

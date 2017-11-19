@@ -13,12 +13,13 @@ class Results extends Component {
         title: "",
         url: "",
         pubdate: "",
-        articles: []
+        articles:[]
+       
     };
 
 
 handleClick = (item, event) => {
-    API.postSaved(item.title.main, item.pub_date, item.web_url)
+    API.runQuery(item.headline.main, item.pub_date, item.web_url)
     .then(data => {setState: this.data})
 }
 
@@ -26,6 +27,7 @@ handleClick = (item, event) => {
     return (
         <Row>
         <Col size="md-12">
+        
         <div className="card">
         <div className="card-header">Results</div>
         <div className="card-body">

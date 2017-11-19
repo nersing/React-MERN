@@ -30,41 +30,42 @@ mongoose.connect(
 
 // /** TO DO move DB stuff out 11:25 time in video  */
 // /** DB */
-// const db = require("./models")
-// // console.log(db.Article)
-// const { Article } = db
+const db = require("./models")
+// console.log(db.Article)
+const { Article } = db
 
-// // Article.create ({
-// //   title: "Manual insert",
-// //   url: "http://example.org/insert"
-// // }).then(x => console.log(x))
-// // .catch(x => console.error(x))
+
 
 // /** END DB */
 
 // /** Routes */
 
-// app.post("/api/saved", (req, res) => {
-//   //get the posted object
-// var article = req.body
-// // console.log(article)
-//   //call Article.create
-//    // then return some json (success|error)
-//   Article.create(article)
-//   .then(() => {
-//     res.json(article)
-//   })
-//   .catch((err) => {
-//     res.json(err)
-//   })
+app.post("/api/saved", (req, res) => {
+  //get the posted object
+var article = req.body
+console.log(article)
+  Article.create(article)
+  .then(() => {
+    res.json(article)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+})
 
- 
-// })
+app.get("/api/saved", (req, res) => {
+  Article.find({}).then(articles => res.json(articles))
+})
 
-// app.get("/api/saved", (req, res) => {
-//   Article.find({}).then(articles => res.json(articles))
-// })
-
+app.post("/api/saved/:id/delete", (req, res) => {
+  Article.destroy(req.body)
+    .then(() => {
+      res.json(article)
+    })
+    .catch((error) => {
+      res.json(error)
+  })
+})
 /** End of Routes */
 
 

@@ -11,9 +11,9 @@ import API from "../utils/API";
 
 class Query extends Component { 
     state = {
-        search: "",
-        start: "",
-        end: ""
+        topic: "",
+        startYear: "",
+        endYear: ""
     };
 
 handleInputChange = event => {
@@ -27,10 +27,9 @@ handleInputChange = event => {
 handleFormSubmit = event => {
     
     event.preventDefault();
-        this.props.updateSearch(this.state.search, this.state.start, this.state.end)
-        return false;
-        // .then(res => this.setState({ articles: res.data}))
-        // .catch(err => console.log(err));
+       API.runQuery(this.state.search, this.state.start, this.state.end)
+        .then(res => this.setState({ articles: res.data}))
+        .catch(err => console.log(err));
         
         // console.log("clicked")
 
@@ -45,21 +44,21 @@ render () {
         <form>
             <label htmlFor="articleTitle">Article Topic</label>
             <Input 
-                value={this.state.search}
+                value={this.state.topic}
                 onChange={this.handleInputChange}
                 name="topic"
                 placeholder=""
             />
             <label htmlFor="articleTitle">Start Year</label>
             <Input 
-                value={this.state.start}
+                value={this.state.startYear}
                 onChange={this.handleInputChange}
                 name="startYear"
                 placeholder=""
             />
             <label htmlFor="articleTitle">End Year</label>
             <Input 
-                value={this.state.end}
+                value={this.state.endYear}
                 onChange={this.handleInputChange}
                 name="endYear"
                 placeholder=""
