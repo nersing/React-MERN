@@ -4,10 +4,14 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const routes = require("./routes");
+
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(routes);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -24,38 +28,42 @@ mongoose.connect(
   }
 );
 
-/** TO DO move DB stuff out 11:25 time in video  */
-/** DB */
-const db = require("./models")
-console.log(db.Article)
-const { Article } = db
+// /** TO DO move DB stuff out 11:25 time in video  */
+// /** DB */
+// const db = require("./models")
+// // console.log(db.Article)
+// const { Article } = db
 
-// Article.create ({
-//   title: "Manual insert",
-//   url: "http://example.org/insert"
-// }).then(x => console.log(x))
-// .catch(x => console.error(x))
+// // Article.create ({
+// //   title: "Manual insert",
+// //   url: "http://example.org/insert"
+// // }).then(x => console.log(x))
+// // .catch(x => console.error(x))
 
-/** END DB */
+// /** END DB */
 
-/** Routes */
+// /** Routes */
 
-app.post("/api/saved", (req, res) => {
-  //get the posted object
-var article = req.body
-// console.log(article)
-  //call Article.create
-   // then return some json (success|error)
-  Article.create(article)
-  .then(() => {
-    res.json(article)
-  })
-  .catch((err) => {
-    res.json(err)
-  })
+// app.post("/api/saved", (req, res) => {
+//   //get the posted object
+// var article = req.body
+// // console.log(article)
+//   //call Article.create
+//    // then return some json (success|error)
+//   Article.create(article)
+//   .then(() => {
+//     res.json(article)
+//   })
+//   .catch((err) => {
+//     res.json(err)
+//   })
 
  
-})
+// })
+
+// app.get("/api/saved", (req, res) => {
+//   Article.find({}).then(articles => res.json(articles))
+// })
 
 /** End of Routes */
 
