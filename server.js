@@ -28,18 +28,17 @@ mongoose.connect(
   }
 );
 
-// /** TO DO move DB stuff out 11:25 time in video  */
 // /** DB */
 const db = require("./models")
 // console.log(db.Article)
 const { Article } = db
 
+//Get Route
+app.get("/api/saved", (req, res) => {
+  Article.find({}).then(articles => res.json(articles))
+})
 
-
-// /** END DB */
-
-// /** Routes */
-
+//Post Route
 app.post("/api/saved", (req, res) => {
   //get the posted object
 var article = req.body
@@ -53,15 +52,13 @@ var article = req.body
   })
 })
 
-app.get("/api/saved", (req, res) => {
-  Article.find({}).then(articles => res.json(articles))
-})
 
-app.post("/api/saved/delete", (req, res) => {
-  var article = req.body
-  Article.destroy(article)
+//Delete Route
+app.delete("/api/saved/:id", (req, res) => {
+  
+  Article.remove({ _id: req.params.id})
     .then(() => {
-      res.json(article)
+      res.json(req.body)
     })
     .catch((error) => {
       res.json(error)
