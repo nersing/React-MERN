@@ -13,7 +13,8 @@ class Query extends Component {
     state = {
         topic: "",
         startYear: "",
-        endYear: ""
+        endYear: "",
+        articles: []
     };
 
 handleInputChange = event => {
@@ -27,7 +28,7 @@ handleInputChange = event => {
 handleFormSubmit = event => {
     
     event.preventDefault();
-       API.runQuery(this.state.search, this.state.start, this.state.end)
+       API.runQuery(this.state.topic, this.state.startYear, this.state.endYear)
         .then(res => this.setState({ articles: res.data}))
         .catch(err => console.log(err));
         

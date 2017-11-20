@@ -13,13 +13,13 @@ class Results extends Component {
         title: "",
         url: "",
         pubdate: "",
-        articles:[]
+        article:[]
        
     };
 
 
 handleClick = (item, event) => {
-    API.runQuery(item.headline.main, item.pub_date, item.web_url)
+    API.runQuery()
     .then(data => {setState: this.data})
 }
 
@@ -31,9 +31,9 @@ handleClick = (item, event) => {
         <div className="card">
         <div className="card-header">Results</div>
         <div className="card-body">
-            {this.state.articles.length ? (
+            {this.state.article.length ? (
                 <List>
-                    {this.state.articles.map(article => {
+                    {this.state.article.map(article => {
                         return(
                         <ListItem 
                             key={article.title}

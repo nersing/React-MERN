@@ -25,6 +25,7 @@ render () {
             </Jumbotron>
 
             <Query updateSearch={this.setQuery} />
+          
  
             </Col>
         </Row>

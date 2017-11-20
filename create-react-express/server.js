@@ -11,7 +11,7 @@ const routes = require("./routes");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(routes);
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -43,7 +43,7 @@ const { Article } = db
 app.post("/api/saved", (req, res) => {
   //get the posted object
 var article = req.body
-console.log(article)
+// console.log(article)
   Article.create(article)
   .then(() => {
     res.json(article)
@@ -57,8 +57,9 @@ app.get("/api/saved", (req, res) => {
   Article.find({}).then(articles => res.json(articles))
 })
 
-app.post("/api/saved/:id/delete", (req, res) => {
-  Article.destroy(req.body)
+app.post("/api/saved/delete", (req, res) => {
+  var article = req.body
+  Article.destroy(article)
     .then(() => {
       res.json(article)
     })

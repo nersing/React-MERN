@@ -23,12 +23,7 @@ class Search extends Component {
     };
 
 
-componentDidUpdate = (prevProps, prevState) => {
-    if(this.state.queryTerm != "" &&
-    (prevState.queryTerm != this.state.queryTerm ||
-    prevState.startYear != this.state.startYear ||
-    prevState.endYear != this.state.endYear))
-    {
+componentDidMount = () => {
         API.runQuery(this.state.queryTerm,
         this.state.startYear, this.state.endYear)
 
@@ -38,7 +33,7 @@ componentDidUpdate = (prevProps, prevState) => {
             }
         })
     }
-}
+
 
 setQuery = (newQuery, newStart, newEnd) => {
     this.setState ({
@@ -46,7 +41,7 @@ setQuery = (newQuery, newStart, newEnd) => {
         startYear: newStart,
         endYear: newEnd
     })
-}
+};
 
 
 
@@ -63,6 +58,6 @@ return (
 </Container>
     )
   }
-}   
+}  
 
 export default Search;
