@@ -27,10 +27,9 @@ componentDidMount = () => {
         API.runQuery(this.state.queryTerm,
         this.state.startYear, this.state.endYear)
 
-        .then((data) => {
-            if (data != this.state.results){
-                this.setState({results: data})
-            }
+        .then(data => {
+            this.setState({results: data})
+            console.log(data)
         })
     }
 
@@ -48,10 +47,6 @@ setQuery = (newQuery, newStart, newEnd) => {
 render() {
 return (
     <Container fluid>
-          <Jumbotron>
-                <h1>New York Times Article Scraper</h1>
-                <h3>Search for articles of interest and save them!</h3>
-            </Jumbotron>
    
         <Query updateSearch={this.setQuery} />
         <Results results={this.state.results} />

@@ -13,7 +13,7 @@ class Results extends Component {
         title: "",
         url: "",
         pubdate: "",
-        article:[]
+        article:{}
        
     };
 
@@ -21,6 +21,7 @@ class Results extends Component {
 handleClick = (item, event) => {
     API.runQuery()
     .then(data => {setState: this.data})
+   
 }
 
  render () {
@@ -40,7 +41,7 @@ handleClick = (item, event) => {
                             title={article.title}
                             url={article.url} />
                     );
-                        <SaveBtn onClick={() => this.saveArticle(article.title)} />
+                        <SaveBtn onClick={() => this.postSaved(article.title)} />
                         
                     
                 } )}

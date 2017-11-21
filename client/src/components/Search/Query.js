@@ -6,6 +6,7 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 import DeleteBtn from "../../components/DeleteBtn";
 import SaveBtn from "../../components/SaveBtn";
 import API from "../utils/API";
+import Search from "../Search"
 
 
 
@@ -29,10 +30,13 @@ handleFormSubmit = event => {
     
     event.preventDefault();
        API.runQuery(this.state.topic, this.state.startYear, this.state.endYear)
-        .then(res => this.setState({ articles: res.data}))
+        .then(res => this.setState({ articles: res.data })) 
         .catch(err => console.log(err));
+
         
-        // console.log("clicked")
+        
+        console.log("you are trying to search for" + this.state.topic)
+        
 
     };
 
@@ -65,9 +69,9 @@ render () {
                 placeholder=""
             />
             <FormBtn
-                disabled={!(this.state.topic)}
                 onClick={this.handleFormSubmit}
-            > Search
+
+                > Search
             </FormBtn>
         </form>
     </div>

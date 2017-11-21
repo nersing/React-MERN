@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-import DeleteBtn from "../components/DeleteBtn";
-import SaveBtn from "../components/SaveBtn";
-import API from "./utils/API";
 import Query from "./Search/Query"
+import Search from "./Search";
+import Save from "./Save"
 
 class Main extends Component { 
- 
  
 
 render () {
@@ -24,14 +19,11 @@ render () {
                 <h3>Search for articles of interest and save them!</h3>
             </Jumbotron>
 
-            <Query updateSearch={this.setQuery} />
-          
- 
+            <Search />
+            <Save />
+        
             </Col>
         </Row>
-
-       
-
     </Container>
 
 )
