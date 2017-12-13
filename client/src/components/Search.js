@@ -15,31 +15,17 @@ import Results from "./Search/Results"
 
 class Search extends Component { 
     state = {
-       
-        queryTerm: "",
-        startYear: "",
-        endYear: "",
         results: {}
     };
 
 
-componentDidMount = () => {
-        API.runQuery(this.state.queryTerm,
-        this.state.startYear, this.state.endYear)
-
-        .then(data => {
-            this.setState({results: data})
-            console.log(data)
-        })
-    }
 
 
 setQuery = (newQuery, newStart, newEnd) => {
-    this.setState ({
-        queryTerm: newQuery,
-        startYear: newStart,
-        endYear: newEnd
-    })
+    API.runQuery(newQuery, newStart, newEnd)
+    .then((data) => {
+    this.setState ({ results: {docs: data.docs }})
+})
 };
 
 
@@ -49,7 +35,7 @@ return (
     <Container fluid>
    
         <Query updateSearch={this.setQuery} />
-        <Results results={this.state.results} />
+        {/* <Results results={this.state.results} /> */}
 </Container>
     )
   }

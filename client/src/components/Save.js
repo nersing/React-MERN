@@ -11,49 +11,36 @@ import Search from "./Search"
 
 class Save extends Component { 
     state = {
-        articles: [],
+        savedArticles: [],
        
     };
 
-
+    
 render () {
-    return (
-        <Container fluid>
-        
-            
-            <Row>
-            <Col size="md-12">  
-                <div className="card">
-                <div className="card-header">Saved Articles</div>
-                <div className="card-body">
+    return this.state.savedArticles.map((article, index) =>  {
 
-                {this.state.articles.length ? (
-                        <List>
-                            {this.state.articles.map(article => (
-                                <ListItem key={article.title}>
-                                <Link to={"/articles/" + article.title}>
-                                <strong>
-                                    {article.title}
-                                </strong>
-                                </Link>
-                                <DeleteBtn onClick={() => this.delete(article.title)} />
-                                </ListItem>
-                            ))}
-                        </List>
-                    ) : (
-                        <h3>No Saved Articles to Display</h3>
-                    )
-                    }
-                </div>
-                </div>
+        return (     
+             <div key={index}>
+                <li className="list-group-item">
+                <h3>
+                <span>
+                  <em>{article.title}</em>
+                 </span>
+                 <span className="btn-group pull-right">
+                    <a href={article.url} rel="noopener noreferrer" target="_blank">
+                        <button className="btn btn-default ">View Article</button>
+                     </a>
+                        <button className="btn btn-primary" onClick={() => this.handleClick(article)}>Delete</button>
+                 </span>
+                </h3>
+                <h3>No Saved Articles to Display</h3>
+                </li>
+             </div>
+             )
+        })
+    }
+}
 
-            </Col>
-            </Row>
-            </Container>
-
-            )
-            }
-            }
 
 export default Save;
 

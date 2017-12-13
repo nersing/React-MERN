@@ -7,6 +7,7 @@ import DeleteBtn from "../../components/DeleteBtn";
 import SaveBtn from "../../components/SaveBtn";
 import API from "../utils/API";
 import Search from "../Search"
+import Results from "./Results"
 
 
 
@@ -30,7 +31,10 @@ handleFormSubmit = event => {
     
     event.preventDefault();
        API.runQuery(this.state.topic, this.state.startYear, this.state.endYear)
-        .then(res => this.setState({ articles: res.data })) 
+        .then((res) => {
+            console.log('THIS IS COMING FROM THE API ---------', res);
+            this.setState({ articles: res.data.response.docs })
+        }) 
         .catch(err => console.log(err));
 
         
@@ -41,6 +45,9 @@ handleFormSubmit = event => {
     };
 
 render () {
+
+    console.log('this is our ARTICLE STATE -----', this.state.articles)
+
     return (
       
     <div className="card">
@@ -54,14 +61,14 @@ render () {
                 name="topic"
                 placeholder=""
             />
-            <label htmlFor="articleTitle">Start Year</label>
+            <label htmlFor="articleTitle">Start Year (YYYYMMDD)</label>
             <Input 
                 value={this.state.startYear}
                 onChange={this.handleInputChange}
                 name="startYear"
                 placeholder=""
             />
-            <label htmlFor="articleTitle">End Year</label>
+            <label htmlFor="articleTitle">End Year (YYYYMMDD)</label>
             <Input 
                 value={this.state.endYear}
                 onChange={this.handleInputChange}
@@ -75,6 +82,7 @@ render () {
             </FormBtn>
         </form>
     </div>
+    <Results articles={this.state.articles} />
     </div>
         )
     }
