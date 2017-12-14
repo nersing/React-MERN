@@ -67,7 +67,7 @@ class Results extends Component {
                                   View Article
                                 </button>
                               </a>
-                              <button
+                              {/* <button
                                 className="btn btn-dark"
                                 style={{ margin: "5px" }}
                                 onClick={() => {
@@ -75,7 +75,7 @@ class Results extends Component {
                                 }}
                               >
                                 Save
-                              </button>
+                              </button> */}
                             </span>
                           </span>
                         </h3>
